@@ -1,0 +1,16 @@
+{% extends 'edittemp.html' %}
+{% load static %}
+{% block content %}
+    <h1>Education</h1>
+    <ul>
+        {% for edu in education_details %}
+        <li>
+            <h3>{{ edu.degree }} - {{ edu.school_name }}</h3>
+            <p>{{ edu.description }}</p>
+            <small>{{ edu.start_date }} - {{ edu.end_date }}</small>
+        </li>
+        {% empty %}
+        <p>No education details added yet.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

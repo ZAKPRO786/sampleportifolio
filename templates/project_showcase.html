@@ -1,0 +1,85 @@
+<!-- profiles/templates/profiles/project_showcase.html -->
+
+{% extends 'projtemp.html' %}
+{% load static %}
+{% block content %}
+    <style>
+        .project-card {
+            margin-bottom: 30px;
+        }
+
+        .project-card img {
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .project-link {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .project-link a {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .pagination {
+            justify-content: center;
+        }
+    </style>
+
+
+    <div class="container">
+        <h1 class="text-center my-4">Project Showcase</h1>
+
+        <div class="row">
+            {% for project in projects %}
+            <div class="col-md-4">
+                <div class="card project-card">
+                    {% if project.image %}
+                    <img class="card-img-top" src="{{ project.image.url }}" alt="Project image">
+                    {% else %}
+                    <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Placeholder image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description|truncatewords:20 }}</p>
+                        {% if project.link %}
+                        <div class="project-link">
+                            <a href="{{ project.link }}" target="_blank">View Project</a>
+                        </div>
+                        {% endif %}
+                        <p class="card-text"><small class="text-muted">{{ project.date }}</small></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination controls -->
+        <div class="pagination">
+            <span class="page-item">
+                {% if projects.has_previous %}
+                    <a class="page-link" href="?page=1">First</a>
+                    <a class="page-link" href="?page={{ projects.previous_page_number }}">Previous</a>
+                {% endif %}
+            </span>
+
+            <span class="page-item disabled">
+                Page {{ projects.number }} of {{ projects.paginator.num_pages }}
+            </span>
+
+            <span class="page-item">
+                {% if projects.has_next %}
+                    <a class="page-link" href="?page={{ projects.next_page_number }}">Next</a>
+                    <a class="page-link" href="?page={{ projects.paginator.num_pages }}">Last</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'edittemp.html' %}
+{% load static %}
+{% block content %}
+    <h1>Certifications</h1>
+    <ul>
+        {% for cert in certifications %}
+        <li>
+            <h3>{{ cert.certification_name }} - {{ cert.issuing_organization }}</h3>
+            <small>{{ cert.issue_date }}</small>
+        </li>
+        {% empty %}
+        <p>No certifications added yet.</p>
+        {% endfor %}
+    </ul>
+{% endblock %}

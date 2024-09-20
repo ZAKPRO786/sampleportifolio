@@ -1,0 +1,14 @@
+{% extends 'edittemp.html' %}
+{% load static %}
+{% block content %}
+ <div class="container section-title" data-aos="fade-up">
+        <h2>EDIT PROFILE</h2>
+
+      </div><!-- End Section Title -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</form>
+
+{% endblock %}

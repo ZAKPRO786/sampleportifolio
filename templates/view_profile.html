@@ -1,0 +1,13 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<h2>{{ profile.user.username }}'s Profile</h2>
+<p><strong>Bio:</strong> {{ profile.bio }}</p>
+<p><strong>Skills:</strong> {{ profile.skills }}</p>
+<p><strong>Contact Email:</strong> {{ profile.contact_email }}</p>
+<p><strong>Website:</strong> {{ profile.website }}</p>
+<p><strong>Phone:</strong> {{ profile.phone }}</p>
+<a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+
+{% endblock %}

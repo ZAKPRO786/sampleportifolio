@@ -1,0 +1,30 @@
+
+<!-- profiles/templates/profiles/customize_portfolio.html -->
+{% extends 'edittemp.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container section-title" data-aos="fade-up">
+        <h2>CUSTOMIZE</h2>
+
+      </div><!-- End Section Title -->
+
+    <form method="post">
+        {% csrf_token %}
+
+        <h2>Project Showcase</h2>
+        {{ project_form.as_p }}
+
+        <h2>Work Experience</h2>
+        {{ work_form.as_p }}
+
+        <h2>Education</h2>
+        {{ education_form.as_p }}
+
+        <h2>Certifications</h2>
+        {{ certification_form.as_p }}
+
+        <button type="submit" class="btn btn-success">Save Portfolio</button>
+    </form>
+
+{% endblock %}
